@@ -1,13 +1,6 @@
-﻿using Solutions;
+﻿using Solutions.LeetCode;
 
-Console.WriteLine(PeriodicTableWords.CanSpell("nana"));
-Console.WriteLine(LeetTranslator.Translate("string"));
+int[] numbers = [1, 7, 3, 2];
+var result = TwoSum.ON(numbers, 9);
 
-var primeFactors = PrimeFactorization.PrimeFactors(34);
-
-foreach (var factor in primeFactors)
-{
-    Console.WriteLine(factor);   
-}
-
-Console.WriteLine(RoundToNearestMultiple.Round(12, 5));
+Console.WriteLine("{0} {1}", result[0], result[1]);
