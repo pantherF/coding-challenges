@@ -1,4 +1,4 @@
-namespace Solutions;
+namespace Solutions.FreeCodeCampDailyChallenges;
 
 public static class PeriodicTableWords
 {
