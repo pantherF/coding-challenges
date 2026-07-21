@@ -6,7 +6,7 @@ public static class RoundToNearestMultiple
     {
         if (first <= second)
         {
-            throw new Exception("first must be greater than second");
+            throw new Exception("First must be greater than second.");
         }
 
         var length = first * second;
