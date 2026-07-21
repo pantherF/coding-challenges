@@ -58,6 +58,8 @@ public static class PrimeFactorization
 
         Factor(number, primes, ref factors);
 
+        factors.Sort();
+
         return factors;
     }
 
