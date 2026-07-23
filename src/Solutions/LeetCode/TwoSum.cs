@@ -11,33 +11,12 @@ public static class TwoSum
         {
             for (int j = 0; j < numbers.Length; j++)
             {
-                if (numbers[i] + numbers[j] == target)
+                if (numbers[i] + numbers[j] == target && i != j)
                 {
                     solution[0] = i;
                     solution[1] = j;
                     break;
                 }
-            }
-        }
-
-        return solution;
-    }
-
-    public static int[] ONLogN(int[] numbers, int target)
-    {
-        int[] solution = [0, 0];
-
-        Array.Sort(numbers);
-
-        for (int i = 0; i < numbers.Length; i++)
-        {
-            var find = target - numbers[i];
-            solution[0] = i;
-            solution[1] = Array.BinarySearch(numbers, find);
-
-            if (solution[1] > 0)
-            {
-                break;
             }
         }
 
@@ -50,12 +29,12 @@ public static class TwoSum
 
         for (int i = 0; i < numbers.Length; i++)
         {
-            map.Add(numbers[i], i);
-
-            if (map.TryGetValue(Math.Abs(numbers[i] - target), out int value))
+            if (map.TryGetValue(target - numbers[i], out var index))
             {
-                return [map[numbers[i]], value];
+                return [index, i];
             }
+
+            map[numbers[i]] = i;
         }
 
         return [0, 0];
