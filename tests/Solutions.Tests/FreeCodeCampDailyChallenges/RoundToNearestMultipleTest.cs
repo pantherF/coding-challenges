@@ -1,6 +1,6 @@
 ﻿using Solutions.FreeCodeCampDailyChallenges;
 
-namespace Solutions.Tests;
+namespace Solutions.Tests.FreeCodeCampDailyChallenges;
 
 public class RoundToNearestMultipleTest
 {
