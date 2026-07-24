@@ -18,20 +18,15 @@ public static class ContainsDuplicateTwo
         return false;
     }
 
-    // Fails two tests at the moment
     public static bool ONLogK(int[] nums, int k)
     {
-        for (int i = 0; i < nums.Length; i += k + 1)
+        for (int i = 0; i < nums.Length; i++)
         {
-            int[] temp = new int[k];
-            for (int j = 1; j <= k; j++)
+            var size = Math.Min(nums.Length - (i + 1), k);
+            int[] temp = new int[size];
+            for (int j = 1; j <= size; j++)
             {
                 temp[j - 1] = nums[i + j];
-
-                if (i + j == nums.Length)
-                {
-                    break;
-                }
             }
 
             Array.Sort(temp);
@@ -39,7 +34,7 @@ public static class ContainsDuplicateTwo
             if (Array.BinarySearch(temp, nums[i]) >= 0)
             {
                 return true;
-            }
+            } 
         }
 
         return false;
@@ -47,7 +42,7 @@ public static class ContainsDuplicateTwo
 
     public static bool ON(int[] nums, int k)
     {
-        var set = new HashSet<int>();
+        var set = new HashSet<int>(nums.Length);
 
         for (int i = 0; i < nums.Length; i++)
         {

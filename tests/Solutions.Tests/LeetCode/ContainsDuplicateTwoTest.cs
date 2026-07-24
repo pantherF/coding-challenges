@@ -15,6 +15,13 @@ public class ContainsDuplicateTwoTest
             new object[] { new int[] { 99, 99,}, 2 },
     };
 
+    public static IEnumerable<object[]> FalseTestCases =>
+    new List<object[]>
+    {
+            new object[] { new int[] { 1, 2, 3, 1, 2, 3 }, 2 },
+            new object[] { new int[] { 0, 1, 2, 3, 4, 5, 0 }, 5 },
+    };
+
     [Theory]
     [MemberData(nameof(TrueTestCases))]
     public void ONTimesK_ReturnTrue(int[] arr, int k)
@@ -41,13 +48,11 @@ public class ContainsDuplicateTwoTest
         Assert.True(result);
     }
 
-    [Fact]
-    public void ONLogK_ReturnFalse()
+    [Theory]
+    [MemberData(nameof(FalseTestCases))]
+    public void ONLogK_ReturnFalse(int[] arr, int k)
     {
-        int k = 2;
-
-        var result = ContainsDuplicateTwo.ONLogK(_arr, k);
-
+        var result = ContainsDuplicateTwo.ONLogK(arr, k);
         Assert.False(result);
     }
 
