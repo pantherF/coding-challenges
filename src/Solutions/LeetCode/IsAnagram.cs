@@ -10,8 +10,13 @@ class Counters
 
 public static class IsAnagram
 {
-    // Very simple, only assures the same characters are present.
-    // Not suited for the anagram problem.
+    /// <summary>
+    /// Very simple, only assures the same characters are present.
+    /// Not suited for the anagram problem.
+    /// </summary>
+    /// <param name="s">The word to compare against.</param>
+    /// <param name="t">The word to check for potentially being an anagram of s.</param>
+    /// <returns>True if an anagram is found, false if not.</returns>
     public static bool Basic(string s, string t)
     {
         if (s.Length != t.Length) return false;
@@ -27,6 +32,12 @@ public static class IsAnagram
         return true;
     }
 
+    /// <summary>
+    /// My first- unoptimized take at the problem.
+    /// </summary>
+    /// <param name="s">The word to compare against.</param>
+    /// <param name="t">The word to check for potentially being an anagram of s.</param>
+    /// <returns>True if an anagram is found, false if not.</returns>
     public static bool Is(string s, string t)
     {
         if (s.Length != t.Length) return false;
@@ -54,6 +65,13 @@ public static class IsAnagram
         return true;
     }
 
+    /// <summary>
+    /// This is my best shot at implementing a Unicode friendly solution.
+    /// It runs with decent runtime, beating 58% of implementations on leetcode at the moment.
+    /// </summary>
+    /// <param name="s">The word to compare against.</param>
+    /// <param name="t">The word to check for potentially being an anagram of s.</param>
+    /// <returns>True if an anagram is found, false if not.</returns>
     public static bool Unicode(string s, string t)
     {
         if (s.Length != t.Length) return false;
@@ -97,8 +115,13 @@ public static class IsAnagram
     }
 
 
-    // This is the simplest solution code-wise, though still not the fastest.
-    // I wonder if a more efficient sorting algorithm can help us here.
+    /// <summary>
+    /// This is the simplest solution code-wise, though still not the fastest.
+    /// I wonder if a more efficient sorting algorithm can help us here.
+    /// </summary>
+    /// <param name="s">The word to compare against.</param>
+    /// <param name="t">The word to check for potentially being an anagram of s.</param>
+    /// <returns>True if an anagram is found, false if not.</returns>
     public static bool Sorting(string s, string t)
     {
         if (s.Length != t.Length) return false;
@@ -118,6 +141,13 @@ public static class IsAnagram
         return new string(characters);
     }
 
+
+    /// <summary>
+    /// The fastest time complexity implementation for this problem.
+    /// </summary>
+    /// <param name="s">The word to compare against.</param>
+    /// <param name="t">The word to check for potentially being an anagram of s.</param>
+    /// <returns>True if an anagram is found, false if not.</returns>
     public static bool O1(string s, string t)
     {
         if (s.Length != t.Length) return false;
@@ -139,5 +169,35 @@ public static class IsAnagram
         }
 
         return true;
+    }
+
+    /// <summary>
+    /// Slower than the above solution, although it is theoretically simpler, as the loop is only done once.
+    /// The difference can be seen in 43.07 memory usage for this solution, compared to 43.45 for the above.
+    /// Because faster runtime is generally valued ofer less space usage, the O1 implementation is the winner.
+    /// Not to mention, that one is truly O(1), the below is not. it runs a millisecond slower than the above :D
+    /// </summary>
+    /// <param name="s">The word to compare against.</param>
+    /// <param name="t">The word to check for potentially being an anagram of s.</param>
+    /// <returns>True if an anagram is found, false if not.</returns>
+    public static bool O1Simple(string s, string t)
+    {
+        if (s.Length != t.Length) return false;
+
+        var alphabet = new int[26];
+        var counter = 0;
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (alphabet[s[i] - 'a'] == 0) counter++;
+            else if (alphabet[s[i] - 'a'] == -1) counter--;
+            alphabet[s[i] - 'a']++;
+
+            if (alphabet[t[i] - 'a'] == 0) counter++;
+            else if (alphabet[t[i] - 'a'] == 1) counter--;
+            alphabet[t[i] - 'a']--;
+        }
+
+        return counter == 0;
     }
 }

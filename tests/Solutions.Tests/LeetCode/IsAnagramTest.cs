@@ -8,7 +8,7 @@ public class IsAnagramTest
     new List<object[]>
     {
         new object[] { "cat", "tac"},
-        new object[] { "greaTestofalLtime", "allgreatestofTime"},
+        new object[] { "greatestofalltime", "allgreatestoftime"},
     };
 
     public static IEnumerable<object[]> TrueUnicodeCases =>
