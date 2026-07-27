@@ -16,7 +16,7 @@ public class TwoSumTest
 
     [Theory]
     [MemberData(nameof(TestCases))]
-    public void ONSquared_ReturnTrue(int[] arr, int k, int[] expected)
+    public void ONSquared_ReturnExpected(int[] arr, int k, int[] expected)
     {
         var actual = TwoSum.ONSquared(arr, k);
         Assert.Equal(expected.OrderBy(x => x), actual.OrderBy(x => x));
@@ -24,7 +24,7 @@ public class TwoSumTest
 
     [Theory]
     [MemberData(nameof(TestCases))]
-    public void ON_ReturnTrue(int[] arr, int k, int[] expected)
+    public void ON_ReturnExpected(int[] arr, int k, int[] expected)
     {
         var actual = TwoSum.ON(arr, k);
         Assert.Equal(expected.OrderBy(x => x), actual.OrderBy(x => x));
